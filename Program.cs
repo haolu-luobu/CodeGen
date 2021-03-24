@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using NSwag;
 using NSwag.CodeGeneration.CSharp;
 
 namespace code_gen
@@ -9,22 +8,14 @@ namespace code_gen
     {
         static async Task Main(string[] args)
         {
-            System.Net.WebClient wclient = new System.Net.WebClient();         
-
-            // OpenApiDocument document = await OpenApiYamlDocument.FromYamlAsync(
-                // wclient.DownloadString("http://172.19.0.7/doc/Services/ModerationDBService.yml"));
-            OpenApiDocument document = await OpenApiDocument.FromJsonAsync(
-                // wclient.DownloadString("http://172.19.0.44/swagger/v1/swagger.json")
-                File.ReadAllText("/Users/hlu/rsrc/swagger/code_gen/code_gen/AIModerationClient.json")
-                );
-            wclient.Dispose();
+            var document = await InputSetting.GetOpenApiDoc();
 
             var settings = new CSharpClientGeneratorSettings
             {
-                ClassName = "AIModerationClient", 
-                CSharpGeneratorSettings = 
+                ClassName = InputSetting.ClassName,
+                CSharpGeneratorSettings =
                 {
-                    Namespace = "Luobo.AIModerationClient.Client"
+                    Namespace = InputSetting.NameSpace
                 }
             };
 
