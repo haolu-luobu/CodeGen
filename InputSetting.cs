@@ -43,7 +43,7 @@ namespace code_gen
             var fileTxt = GetFileTxt();
             if (JsonOrYaml)
             {
-                var document = await OpenApiDocument.FromJsonAsync(fileTxt);
+                return await OpenApiDocument.FromJsonAsync(fileTxt);
             }
             return await OpenApiYamlDocument.FromYamlAsync(fileTxt);
         }
