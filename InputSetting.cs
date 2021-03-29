@@ -9,14 +9,13 @@ namespace code_gen
 
         #region GeneralSetting
 
-        public static readonly string ClassName = "AIModerationClient";
-        public static readonly string NameSpace = "Luobo.AIModerationClient.Client";
+        public static readonly string ClassName = "";
+        public static readonly string NameSpace = "";
 
         public static readonly bool FileOrUrl = true; //file true, url false
         public static readonly bool JsonOrYaml = true; // json true, yaml false
 
-        public static readonly string
-            Location = "/Users/hlu/rsrc/swagger/code_gen/code_gen/AIModerationClient.json"; // url or path location
+        public static readonly string Location = ""; // url or path location
 
         #endregion
 
@@ -27,11 +26,11 @@ namespace code_gen
             if (FileOrUrl)
             {
                 //file
-                return File.ReadAllText(InputSetting.Location);
+                return File.ReadAllText(Location);
             }
             //url
             var wclient = new System.Net.WebClient();
-            return wclient.DownloadString(InputSetting.Location);
+            return wclient.DownloadString(Location);
         }
 
         /// <summary>

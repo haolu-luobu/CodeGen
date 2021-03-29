@@ -16,9 +16,11 @@ namespace code_gen
                 CSharpGeneratorSettings =
                 {
                     Namespace = InputSetting.NameSpace
-                }
+                },
+                // OperationNameGenerator = new MultipleClientsFromFirstTagAndPathSegmentsOperationNameGenerator()
+                OperationNameGenerator = new CustomSingleClientFromPathSegmentsOperationNameGenerator()
+                // OperationNameGenerator = new MultipleClientsFromPathSegmentsOperationNameGenerator()
             };
-
             var generator = new CSharpClientGenerator(document, settings);
             var code = generator.GenerateFile();
             await File.WriteAllTextAsync($"{settings.ClassName}.cs", code);
